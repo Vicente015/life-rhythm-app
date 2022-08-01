@@ -7,6 +7,7 @@ import tw, { useDeviceContext } from 'twrnc'
 import database from '../database'
 import Button from './Button'
 import Chart from './Chart'
+import UnitDropdown from './UnitDropdown'
 
 const Main = () => {
   useDeviceContext(tw)
@@ -20,13 +21,16 @@ const Main = () => {
       <View>
         <Text style={tw`mx-auto text-white text-sm`}>f = nº veces / tiempo</Text>
       </View>
-      <View style={tw`flex flex-row mx-20 my-5`}>
+      <View style={tw`flex flex-row m-auto mt-3 mb-0`}>
         <Button color='green' text='Positive' />
         <Button color='red' text='Negative' />
-        <TouchableOpacity onPress={() => database.clearStore()} style={tw`bg-red-600 mx-auto py-2 px-5 rounded-full border-solid border-2 border-red-700`}>
+      </View>
+      <View style={tw`flex flex-row m-auto mt-3 mb-0`}>
+        <TouchableOpacity onPress={() => database.clearStore()} style={tw`bg-red-600 py-2 px-5 rounded-full border-solid border-2 border-red-700`}>
           <Text style={tw`text-white text-base font-medium`}>Reset</Text>
         </TouchableOpacity>
       </View>
+      <UnitDropdown />
     </SafeAreaView>
   )
 }
