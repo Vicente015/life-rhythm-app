@@ -1,23 +1,33 @@
-import dayjs from 'dayjs'
-import isBetween from 'dayjs/plugin/isBetween'
+/* eslint-disable sort/imports */
 import React, { useEffect, useState } from 'react'
 import {
-  Dimensions, View
+  Dimensions, Text, View
 } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
-import { useMMKVStorage } from 'react-native-mmkv-storage'
 import tw from 'twrnc'
-
+import { useMMKVStorage } from 'react-native-mmkv-storage'
 import storage from '../database'
+
+import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
+dayjs.extend(isBetween)
 
 /** @type {import('react-native-chart-kit/dist/HelperTypes').ChartConfig} */
 const chartConfig = {
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientToOpacity: 0,
-  color: (opacity = 0) => 'white',
-  decimalPlaces: false
+  backgroundGradientFrom: tw.color('green-300'),
+  backgroundGradientFromOpacity: 1,
+  backgroundGradientTo: tw.color('green-500'),
+  backgroundGradientToOpacity: 1,
+  color: () => 'white',
+  decimalPlaces: false,
+  propsForDots: {
+    r: 5,
+    stroke: 'white',
+    strokeOpacity: 0.2,
+    strokeWidth: 8
+  },
+  style: { borderRadius: 16 }
 }
-dayjs.extend(isBetween)
 
 const Chart = () => {
   /** @type {[{ date: number, value: number }[]]} */
@@ -74,21 +84,27 @@ const Chart = () => {
     if (records.length > 1) groupRecords()
   }, [records, unit])
 
-  // !console.debug('filter', dateFilter)
+  console.debug('groupedData', groupedData)
+  //! console.debug('filter', dateFilter)
+
+  // TODO: Por alguna razón hay espacio a la derecha del chart que no se puede quitar, el de la izquierda de pudo con el paddingRight
+  // https://github.com/indiespirit/react-native-chart-kit/issues/148
   return (
-    <View style={tw`bg-neutral-700 flex mx-5 rounded-2xl border-solid border-4 border-neutral-900`}>
+    <View style={tw`mx-5 mt-3`}>
+      <Text style={tw`text-white text-lg font-semibold`}>Ritmo de la última semana</Text>
       <LineChart
         data={{
           datasets: [
-            {
-              color: (opacity = 1) => 'white',
-              data: groupedData
-            }
+            { color: (opacity = 1) => 'white', data: [7, 3, 6, 7, 8] }
           ],
           labels
         }}
-        style={tw`mx-[-30]`}
-        width={Dimensions.get('window').width}
+        style={{
+          borderRadius: 16,
+          marginVertical: 10,
+          paddingRight: 40
+        }}
+        width={Dimensions.get('window').width - 40}
         height={200}
         withHorizontalLabels
         withVerticalLabels

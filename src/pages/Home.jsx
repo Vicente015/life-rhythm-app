@@ -1,26 +1,21 @@
-import Constants from 'expo-constants'
+import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import {
   SafeAreaView, Text, TouchableOpacity, View
 } from 'react-native'
 import tw, { useDeviceContext } from 'twrnc'
+
+import Button from '../components/Button'
+import Chart from '../components/Chart'
+import UnitDropdown from '../components/UnitDropdown'
 import database from '../database'
-import Button from './Button'
-import Chart from './Chart'
-import UnitDropdown from './UnitDropdown'
 
 const Main = () => {
   useDeviceContext(tw)
 
   return (
-    <SafeAreaView style={tw`top-[${Constants.statusBarHeight}px] bg-neutral-800 h-screen w-screen`}>
-      <View style={tw`py-2 mb-5`}>
-        <Text style={tw`mx-auto text-2xl font-bold text-white`}>Life Rhythm</Text>
-      </View>
+    <SafeAreaView style={tw`bg-neutral-900 h-screen w-screen`}>
       <Chart />
-      <View>
-        <Text style={tw`mx-auto text-white text-sm`}>f = nº veces / tiempo</Text>
-      </View>
       <View style={tw`flex flex-row m-auto mt-3 mb-0`}>
         <Button color='green' text='Positive' />
         <Button color='red' text='Negative' />
@@ -31,6 +26,7 @@ const Main = () => {
         </TouchableOpacity>
       </View>
       <UnitDropdown />
+      <StatusBar style='light' />
     </SafeAreaView>
   )
 }
