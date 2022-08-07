@@ -95,7 +95,7 @@ const Chart = () => {
       <LineChart
         data={{
           datasets: [
-            { color: (opacity = 1) => 'white', data: [7, 3, 6, 7, 8] }
+            { color: (opacity = 1) => 'white', data: groupedData }
           ],
           labels
         }}

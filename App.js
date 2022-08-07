@@ -1,22 +1,23 @@
 /* eslint-disable sort/imports */
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import tw from 'twrnc'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faChartPie, faCirclePlus, faGear, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faChartPie, faCirclePlus, faGear, faHeart, faHome } from '@fortawesome/free-solid-svg-icons'
 
 // # Screens
 import Home from './src/pages/Home'
-library.add(faHome, faGear, faCirclePlus, faChartPie)
+
+library.add(faHome, faGear, faCirclePlus, faChartPie, faHeart)
 
 function TestScreen () {
   return (
     <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-      <Text>test</Text>
+      <Text>uwu</Text>
     </View>
   )
 }
@@ -30,7 +31,9 @@ const TabIcons = {
   settings: 'gear'
 }
 
-function BottomBar () {
+function BottomBar (uwu) {
+  const [state, setState] = useState(-1)
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -51,8 +54,18 @@ function BottomBar () {
         tabBarStyle: tw`bg-neutral-800`
       })}
     >
-      <Tab.Screen name='Home' component={Home} />
-      <Tab.Screen name='Add' component={TestScreen} />
+      <Tab.Screen
+        name='Home'
+        component={Home}
+        options={{
+          headerRight: () => (
+            <TouchableOpacity onPress={() => setState(1)} style={tw`p-5`}>
+              <Icon icon='circle-plus' size={24} color='white' />
+            </TouchableOpacity>
+          )
+        }}
+        initialParams={{ state }}
+      />
       <Tab.Screen name='Historic' component={TestScreen} />
       <Tab.Screen name='Settings' component={TestScreen} />
     </Tab.Navigator>
