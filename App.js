@@ -1,6 +1,6 @@
 /* eslint-disable sort/imports */
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { BackHandler, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import React, { useCallback, useMemo, useRef } from 'react'
+import { BackHandler, Text, TouchableOpacity, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
@@ -40,7 +40,7 @@ function BottomSheet ({ reference: bottomSheetModalReference }) {
 
   const snapPoints = useMemo(() => ['25%', '30%'], [])
   const handleSheetChanges = useCallback((index) => {
-    console.debug('handleSheetChanges', index)
+    // debug: console.debug('handleSheetChanges', index)
   }, [])
   const handleClose = useCallback(() => {
     bottomSheetModalReference.current?.dismiss()
@@ -162,17 +162,7 @@ const Navigator = ({ bottomSheet }) => {
           tabBarStyle: tw`bg-neutral-800`
         })}
       >
-        <Tab.Screen
-          name='Home'
-          component={Home}
-          options={{
-            headerRight: () => (
-              <TouchableOpacity style={tw`p-5`}>
-                <Icon icon='circle-plus' size={24} color='white' />
-              </TouchableOpacity>
-            )
-          }}
-        />
+        <Tab.Screen name='Home' component={Home} />
         <Tab.Screen name='Add' component={Home} />
         <Tab.Screen name='Historic' component={TestScreen} />
         <Tab.Screen name='Settings' component={TestScreen} />

@@ -69,6 +69,7 @@
       "unicorn/consistent-function-scoping": "off",
       "unicorn/filename-case": "off",
       "react/prop-types": "off"
-    }
+    },
+    "ignorePatterns": ["*.config.js"]
   }
 }

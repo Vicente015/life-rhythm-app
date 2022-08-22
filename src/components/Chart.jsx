@@ -46,7 +46,6 @@ const Chart = () => {
       .map(day => records.filter(record => formatDate(record.date) === day))
       .filter(group => !group.includes()) // Remove undefined in array
 
-    //! console.debug('grouped 1', grouped, daysRecorded)
     // ? Filter
     /**
      * @param {Date} date
@@ -57,7 +56,6 @@ const Chart = () => {
 
     grouped = grouped
       .filter(group => filterDate(group[0].date, unit))
-    //! console.debug('grouped 2', grouped, unit)
 
     // ? Convert all dates to unix ms
     grouped = grouped.map(group => group.map((record) => ({ ...record, date: dayjs(record.date).valueOf() })))
@@ -77,15 +75,11 @@ const Chart = () => {
         return point
       })
 
-    //! console.debug('grouped 3', grouped)
     setGroupedData(grouped)
   }
   useEffect(() => {
     if (records.length > 1) groupRecords()
   }, [records, unit])
-
-  console.debug('groupedData', groupedData)
-  //! console.debug('filter', dateFilter)
 
   // TODO: Por alguna razón hay espacio a la derecha del chart que no se puede quitar, el de la izquierda de pudo con el paddingRight
   // https://github.com/indiespirit/react-native-chart-kit/issues/148

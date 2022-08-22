@@ -22,7 +22,7 @@ const Main = ({ navigation, route }) => {
     bottomSheetModalReference.current?.present()
   }, [])
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index)
+    // debug: console.log('handleSheetChanges', index)
   }, [])
 
   return (

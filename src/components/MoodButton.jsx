@@ -12,7 +12,6 @@ const Button = ({ color, text }) => {
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const addRecord = () => {
-    //! console.debug('oldRecords', records)
     return setRecords(
       [
         ...records,
