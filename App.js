@@ -1,22 +1,32 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable react/jsx-indent-props */
 /* eslint-disable sort/imports */
-import React, { useCallback, useMemo, useRef } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { BackHandler, Text, TouchableOpacity, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import { BottomSheetModal, BottomSheetModalProvider, BottomSheetView } from '@gorhom/bottom-sheet'
 import tw from 'twrnc'
+import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/es'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faChartPie, faCirclePlus, faGear, faHeart, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faCaretDown, faChartPie, faCirclePlus, faGear, faHeart, faHome } from '@fortawesome/free-solid-svg-icons'
 
 // * Screens
 import Home from './src/pages/Home'
 
 // * Components
 import MoodButton from './src/components/MoodButton'
+import DatePicker from 'react-native-date-picker'
 
-library.add(faHome, faGear, faCirclePlus, faChartPie, faHeart)
+dayjs.extend(localizedFormat)
+dayjs.extend(relativeTime)
+library.add(faHome, faGear, faCirclePlus, faChartPie, faHeart, faCalendar, faCaretDown)
 
 function TestScreen () {
   return (
@@ -36,18 +46,39 @@ const TabIcons = {
 }
 
 function BottomSheet ({ reference: bottomSheetModalReference }) {
-  // BottomSheetModal
+  const [snapPoints, setSnapPoints] = useState(['5%', '25%'])
+  const [date, setDate] = useState(new Date())
+  const [selectableDate, setSelectableDate] = useState(false)
 
-  const snapPoints = useMemo(() => ['25%', '30%'], [])
+  const onDateChange = useCallback((date) => {
+    setDate(date)
+    setSelectableDate(false)
+    setSnapPoints(['50%', '25%'])
+    console.debug('date change')
+  }, [])
+  const onCurrentDatePress = useCallback(() => {
+    setSelectableDate(true)
+    setSnapPoints(['25%', '50%'])
+    console.debug('current date press')
+  }, [])
   const handleSheetChanges = useCallback((index) => {
-    // debug: console.debug('handleSheetChanges', index)
+    console.debug('handleSheetChanges', index)
   }, [])
   const handleClose = useCallback(() => {
     bottomSheetModalReference.current?.dismiss()
+    setSelectableDate(false)
+    setSnapPoints(['5%', '25%'])
+    console.debug('close')
     return true
   }, [])
-
   BackHandler.addEventListener('hardwareBackPress', handleClose)
+
+  /**
+   * @param {string} string
+   * @returns {string}
+   * @link https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+   */
+  const upperFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 
   return (
     <BottomSheetModal
@@ -58,14 +89,31 @@ function BottomSheet ({ reference: bottomSheetModalReference }) {
       style={tw`bg-neutral-900`}
       backgroundStyle={tw`bg-neutral-800`}
       handleIndicatorStyle={tw`bg-neutral-50`}
+      enableDismissOnClose
     >
-      <View style={tw`mx-auto`}>
+      <BottomSheetView style={tw`mx-auto`}>
         <Text style={tw`font-semibold text-xl text-neutral-50 text-center`}>Añadir registro</Text>
+        {selectableDate
+          ? <DatePicker
+            date={date}
+            onDateChange={onDateChange}
+            minimumDate={dayjs().subtract(3, 'month').toDate()}
+            maximumDate={dayjs().toDate()}
+            mode='date'
+            textColor={tw.color('neutral-50')}
+            fadeToColor='none'
+            style={tw`m-0 p-0`}
+          />
+          : <TouchableOpacity style={tw`flex flex-row justify-center items-center`} onPress={onCurrentDatePress}>
+            <Icon icon='calendar' size={18} color={tw.color('neutral-200')} style={tw`mr-1`} />
+            <Text style={tw`text-neutral-200 text-base`}>{`${dayjs().diff(date, 'days') > 0 ? upperFirstLetter(dayjs(date).locale('es').fromNow(false)) : 'Hoy'}, ${dayjs(date).locale('es').format('DD MMMM')}`}</Text>
+            <Icon icon='caret-down' color={tw.color('neutral-200')} style={tw`mr-1`} />
+          </TouchableOpacity>}
         <View onTouchEnd={handleClose} style={tw`flex flex-row mt-3`}>
-          <MoodButton color='green' text='Positivo' />
-          <MoodButton color='red' text='Negativo' />
+          <MoodButton color='green' text='Positivo' date={date} />
+          <MoodButton color='red' text='Negativo' date={date} />
         </View>
-      </View>
+      </BottomSheetView>
     </BottomSheetModal>
   )
 }

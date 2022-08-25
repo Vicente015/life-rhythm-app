@@ -7,7 +7,7 @@ import { useMMKVStorage } from 'react-native-mmkv-storage'
 import tw from 'twrnc'
 import storage from '../database'
 
-const Button = ({ color, text }) => {
+const Button = ({ color, date, text }) => {
   const [records, setRecords] = useMMKVStorage('records', storage, [])
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
@@ -16,7 +16,7 @@ const Button = ({ color, text }) => {
       [
         ...records,
         // eslint-disable-next-line quote-props
-        { 'date': dayjs().valueOf(), 'value': color === 'green' ? 1 : 0 }
+        { 'date': dayjs(date).valueOf(), 'value': color === 'green' ? 1 : 0 }
       ])
   }
 

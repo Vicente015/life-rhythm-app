@@ -1,8 +1,11 @@
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome'
-import React from 'react'
+import dayjs from 'dayjs'
+import React, { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
+import { useMMKVStorage } from 'react-native-mmkv-storage'
 import Svg, { G, Path } from 'react-native-svg'
 import tw from 'twrnc'
+import storage from '../database'
 
 /**
  * Illustration by https://www.opendoodles.com/
@@ -24,13 +27,63 @@ const Illustration = (properties) => (
 )
 
 export default function RateCard () {
+  /** @type {[{ date: number, value: number }[]]} */
+  const [records] = useMMKVStorage('records', storage, [])
+  /** @type {'week'|'month'|'year'|'all'} */
+  const [unit] = useMMKVStorage('unit', storage, 'week')
+  const [result, setResult] = useState(0)
+
+  // ? Group, sort and sum records
+  const calculateRhythm = () => {
+    // ? Group by day
+    const formatDate = (date) => dayjs(date).format('YYYY-MM-DD')
+    const daysRecorded = [...new Set(records.map(record => formatDate(record.date)))]
+
+    let grouped = daysRecorded
+      .map(day => records.filter(record => formatDate(record.date) === day))
+      .filter(group => !group.includes()) // Remove undefined in array
+
+    // ? Filter
+    /**
+     * @param {Date} date
+     * @param {import('dayjs').UnitType} unit
+     * @returns
+     */
+    const filterDate = (date, unit) => unit === 'all' ? true : dayjs(date).isBetween(dayjs(), dayjs().subtract(1, unit))
+
+    grouped = grouped
+      .filter(group => filterDate(group[0].date, unit))
+
+    // ? Convert all dates to unix ms
+    grouped = grouped.map(group => group.map((record) => ({ ...record, date: dayjs(record.date).valueOf() })))
+
+    // ? Sort older > new
+    grouped = grouped.sort((a, b) => a[0].date > b[0].date)
+
+    // ? Mix values and sum
+    grouped = grouped.map(group => group.map(record => record.value))
+    const nOfArrays = grouped.length
+    grouped = grouped.flat()
+    let total = 0
+    for (const value of grouped) {
+      value === 0 ? total-- : total++
+    }
+
+    // ? Divide by dropdown
+    // debug: console.debug('owo', grouped, total, nOfArrays, result)
+    setResult((total / nOfArrays).toFixed(1))
+  }
+  useEffect(() => {
+    if (records.length > 1) calculateRhythm()
+  }, [records, unit])
+
   return (
     <View style={tw`mx-5 bg-gray-400 border-gray-500 border-2 rounded-2xl flex-row justify-center p-2 pb-0`}>
       <Illustration style={tw`m-0 p-0`} />
       <View style={tw`flex flex-col items-end`}>
         <View>
-          <Text style={tw`font-semibold text-lg text-neutral-100`}>El ritmo de tu vida es</Text>
-          <Text style={tw`font-bold text-5xl text-neutral-50 text-right`}>135</Text>
+          <Text style={tw`font-semibold text-lg text-neutral-100`}>{`Your rate this ${unit} is`}</Text>
+          <Text style={tw`font-bold text-5xl text-neutral-50 text-right`}>{`${result}`}</Text>
         </View>
         <View style={tw`mt-4`}>
           <Text style={tw`font-semibold text-sm text-neutral-200 text-right`}>
