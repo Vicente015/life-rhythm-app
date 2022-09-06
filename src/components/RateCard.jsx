@@ -78,10 +78,10 @@ export default function RateCard () {
   }, [records, unit])
 
   return (
-    <View style={tw`mx-5 bg-gray-400 border-gray-500 border-2 rounded-2xl flex-row justify-center p-2 pb-0`}>
-      <Illustration style={tw`m-0 p-0`} />
+    <View style={tw`mx-5 bg-gray-400 border-gray-500 border-2 rounded-2xl flex-row justify-evenly p-2 pb-0`}>
+      <Illustration style={tw`m-0 p-0 max-w-38 max-h-30`} />
       <View style={tw`flex flex-col items-end`}>
-        <View>
+        <View style={tw`max-w-50 overflow-hidden`}>
           <Text style={tw`font-semibold text-lg text-neutral-100`}>{`Your rate this ${unit} is`}</Text>
           <Text style={tw`font-bold text-5xl text-neutral-50 text-right`}>{`${result}`}</Text>
         </View>

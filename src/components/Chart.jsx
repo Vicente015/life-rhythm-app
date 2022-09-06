@@ -33,6 +33,7 @@ const Chart = () => {
   /** @type {[{ date: number, value: number }[]]} */
   const [records] = useMMKVStorage('records', storage, [])
   const [groupedData, setGroupedData] = useState([])
+  /** @type {'week'|'month'|'year'|'all'} */
   const [unit] = useMMKVStorage('unit', storage, 'week')
   const [labels, setLabels] = useState([])
 
@@ -85,7 +86,7 @@ const Chart = () => {
   // https://github.com/indiespirit/react-native-chart-kit/issues/148
   return (
     <View style={tw`mx-5 mt-3`}>
-      <Text style={tw`text-white text-lg font-semibold`}>Ritmo de la última semana</Text>
+      <Text style={tw`text-white text-lg font-semibold`}>{`Last ${unit} rate`}</Text>
       <LineChart
         data={{
           datasets: [
