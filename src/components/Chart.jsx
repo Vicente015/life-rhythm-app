@@ -14,24 +14,24 @@ import weekOfYear from 'dayjs/plugin/weekOfYear'
 dayjs.extend(isBetween)
 dayjs.extend(weekOfYear)
 
-/** @type {import('react-native-chart-kit/dist/HelperTypes').ChartConfig} */
-const chartConfig = {
-  backgroundGradientFrom: tw.color('green-300'),
-  backgroundGradientFromOpacity: 1,
-  backgroundGradientTo: tw.color('green-500'),
-  backgroundGradientToOpacity: 1,
-  color: () => 'white',
-  decimalPlaces: false,
-  propsForDots: {
-    r: 5,
-    stroke: 'white',
-    strokeOpacity: 0.2,
-    strokeWidth: 8
-  },
-  style: { borderRadius: 16 }
-}
-
 const Chart = ({ isHistoricPage }) => {
+  /** @type {import('react-native-chart-kit/dist/HelperTypes').ChartConfig} */
+  const chartConfig = {
+    backgroundGradientFrom: tw.color(`${isHistoricPage ? 'indigo' : 'green'}-300`),
+    backgroundGradientFromOpacity: 1,
+    backgroundGradientTo: tw.color(`${isHistoricPage ? 'indigo' : 'green'}-600`),
+    backgroundGradientToOpacity: 1,
+    color: () => 'white',
+    decimalPlaces: false,
+    propsForDots: {
+      r: 5,
+      stroke: 'white',
+      strokeOpacity: 0.2,
+      strokeWidth: 8
+    },
+    style: { borderRadius: 16 }
+  }
+
   /** @type {[{ date: number, value: number }[]]} */
   const [records] = useMMKVStorage('records', storage, [])
   const [groupedData, setGroupedData] = useState([])
