@@ -10,7 +10,9 @@ import storage from '../database'
 
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
 dayjs.extend(isBetween)
+dayjs.extend(weekOfYear)
 
 /** @type {import('react-native-chart-kit/dist/HelperTypes').ChartConfig} */
 const chartConfig = {
@@ -29,22 +31,29 @@ const chartConfig = {
   style: { borderRadius: 16 }
 }
 
-const Chart = () => {
+const Chart = ({ isHistoricPage }) => {
   /** @type {[{ date: number, value: number }[]]} */
   const [records] = useMMKVStorage('records', storage, [])
   const [groupedData, setGroupedData] = useState([])
   /** @type {'week'|'month'|'year'|'all'} */
   const [unit] = useMMKVStorage('unit', storage, 'week')
+  const [groupBy] = useMMKVStorage('group', storage, 'day')
   const [labels, setLabels] = useState([])
 
   // ? Group, sort and sum records
   const groupRecords = () => {
-    // ? Group by day
-    const formatDate = (date) => dayjs(date).format('YYYY-MM-DD')
-    const daysRecorded = [...new Set(records.map(record => formatDate(record.date)))]
+    const formats = {
+      day: (date) => dayjs(date).format('YYYY-MM-DD'),
+      month: (date) => dayjs(date).format('YYYY-MM'),
+      week: (date) => dayjs(date).week(),
+      year: (date) => dayjs(date).format('YYYY')
+    }
+    const formatDate = (record) => isHistoricPage ? formats[groupBy](record.date) : formats.day(record.date)
+    // ? Group
+    const daysRecorded = [...new Set(records.map(record => formatDate(record)))]
 
     let grouped = daysRecorded
-      .map(day => records.filter(record => formatDate(record.date) === day))
+      .map(format => records.filter(record => formatDate(record) === format))
       .filter(group => !group.includes()) // Remove undefined in array
 
     // ? Filter
@@ -63,7 +72,7 @@ const Chart = () => {
 
     // ? Sort older > new
     grouped = grouped.sort((a, b) => a[0].date > b[0].date)
-    setLabels(grouped.map(group => formatDate(group[0].date)))
+    setLabels(grouped.map(group => formatDate(group[0])))
 
     // ? Sum all values from days
     grouped = grouped
@@ -80,7 +89,7 @@ const Chart = () => {
   }
   useEffect(() => {
     if (records.length > 1) groupRecords()
-  }, [records, unit])
+  }, [records, unit, groupBy])
 
   // TODO: Por alguna razón hay espacio a la derecha del chart que no se puede quitar, el de la izquierda de pudo con el paddingRight
   // https://github.com/indiespirit/react-native-chart-kit/issues/148

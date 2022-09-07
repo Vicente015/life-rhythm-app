@@ -8,9 +8,9 @@ import storage from '../database'
 
 const UnitDropdown = () => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useMMKVStorage('unit', storage, 'week')
+  const [value, setValue] = useMMKVStorage('group', storage, 'day')
   const [items, setItems] = useState(
-    ['week', 'month', 'year', 'all']
+    ['day', 'week', 'month', 'year']
       .map(unit => ({ label: pascalCase(unit), value: unit }))
   )
   const handleClose = useCallback(() => {
@@ -20,8 +20,8 @@ const UnitDropdown = () => {
   BackHandler.addEventListener('hardwareBackPress', handleClose)
 
   return (
-    <View style={tw`w-auto m-auto mt-3 mx-5 mb-0`}>
-      <Text style={tw`text-white text-lg font-semibold mb-1`}>Get data from last</Text>
+    <View style={tw`w-auto m-auto mt-3 mx-5`}>
+      <Text style={tw`text-white text-lg font-semibold mb-1`}>Group by</Text>
       <DropDownPicker
         open={open}
         value={value}
@@ -29,7 +29,7 @@ const UnitDropdown = () => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
-        style={tw`bg-gray-400 border-gray-500 border-2 mb-0`}
+        style={tw`bg-gray-400 border-gray-500 border-2`}
         dropDownContainerStyle={tw`border-gray-500 border-2 border-b-0`}
         textStyle={tw`text-neutral-200`}
         containerStyle={tw`rounded-2xl`}

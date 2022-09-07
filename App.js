@@ -19,6 +19,7 @@ import { faCalendar, faCaretDown, faChartPie, faCirclePlus, faGear, faHeart, faH
 
 // * Screens
 import Home from './src/pages/Home'
+import Historic from './src/pages/Historic'
 
 // * Components
 import MoodButton from './src/components/MoodButton'
@@ -90,6 +91,7 @@ function BottomSheet ({ reference: bottomSheetModalReference }) {
       backgroundStyle={tw`bg-neutral-800`}
       handleIndicatorStyle={tw`bg-neutral-50`}
       enableDismissOnClose
+      enablePanDownToClose
     >
       <BottomSheetView style={tw`mx-auto`}>
         <Text style={tw`font-semibold text-xl text-neutral-50 text-center`}>Añadir registro</Text>
@@ -212,7 +214,7 @@ const Navigator = ({ bottomSheet }) => {
       >
         <Tab.Screen name='Home' component={Home} />
         <Tab.Screen name='Add' component={Home} />
-        <Tab.Screen name='Historic' component={TestScreen} />
+        <Tab.Screen name='Historic' component={Historic} />
         <Tab.Screen name='Settings' component={TestScreen} />
       </Tab.Navigator>
     </NavigationContainer>
