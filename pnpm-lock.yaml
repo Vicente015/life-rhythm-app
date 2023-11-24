@@ -6,23 +6,23 @@ settings:
 
 dependencies:
   '@fortawesome/fontawesome-svg-core':
-    specifier: ~6.1.2
-    version: 6.1.2
+    specifier: ~6.4.2
+    version: 6.4.2
   '@fortawesome/free-solid-svg-icons':
-    specifier: ~6.1.2
-    version: 6.1.2
+    specifier: ~6.4.2
+    version: 6.4.2
   '@fortawesome/react-native-fontawesome':
     specifier: ~0.3.0
-    version: 0.3.0(@fortawesome/fontawesome-svg-core@6.1.2)(react-native-svg@13.9.0)(react-native@0.72.6)
+    version: 0.3.0(@fortawesome/fontawesome-svg-core@6.4.2)(react-native-svg@13.9.0)(react-native@0.72.6)
   '@gorhom/bottom-sheet':
-    specifier: ~4.4.8
-    version: 4.4.8(react-native-gesture-handler@2.12.1)(react-native-reanimated@3.3.0)(react-native@0.72.6)(react@18.2.0)
+    specifier: ~4.5.1
+    version: 4.5.1(react-native-gesture-handler@2.12.1)(react-native-reanimated@3.3.0)(react-native@0.72.6)(react@18.2.0)
   '@react-navigation/bottom-tabs':
-    specifier: ~6.3.3
-    version: 6.3.3(@react-navigation/native@6.0.16)(react-native-safe-area-context@4.6.3)(react-native-screens@3.22.1)(react-native@0.72.6)(react@18.2.0)
+    specifier: ~6.5.11
+    version: 6.5.11(@react-navigation/native@6.1.9)(react-native-safe-area-context@4.6.3)(react-native-screens@3.22.1)(react-native@0.72.6)(react@18.2.0)
   '@react-navigation/native':
-    specifier: ~6.0.16
-    version: 6.0.16(react-native@0.72.6)(react@18.2.0)
+    specifier: ~6.1.9
+    version: 6.1.9(react-native@0.72.6)(react@18.2.0)
   case-anything:
     specifier: ~2.1.13
     version: 2.1.13
@@ -57,7 +57,7 @@ dependencies:
     specifier: ~6.12.0
     version: 6.12.0(react-native-svg@13.9.0)(react-native@0.72.6)(react@18.2.0)
   react-native-date-picker:
-    specifier: ^4.2.14
+    specifier: ^4.3.3
     version: 4.3.3(react-native@0.72.6)(react@18.2.0)
   react-native-dropdown-picker:
     specifier: ~5.4.6
@@ -84,27 +84,27 @@ dependencies:
     specifier: ~0.19.9
     version: 0.19.9(react-dom@18.2.0)(react@18.2.0)
   twrnc:
-    specifier: ~3.4.1
-    version: 3.4.1(react-native@0.72.6)
+    specifier: ~3.6.4
+    version: 3.6.4(react-native@0.72.6)
 
 devDependencies:
   '@babel/core':
-    specifier: ^7.18.13
+    specifier: ^7.23.3
     version: 7.23.3
   '@babel/eslint-parser':
-    specifier: ^7.18.9
+    specifier: ^7.23.3
     version: 7.23.3(@babel/core@7.23.3)(eslint@8.54.0)
   '@babel/plugin-proposal-decorators':
-    specifier: ^7.18.10
+    specifier: ^7.23.3
     version: 7.23.3(@babel/core@7.23.3)
   '@babel/plugin-transform-runtime':
-    specifier: ^7.18.10
+    specifier: ^7.23.4
     version: 7.23.4(@babel/core@7.23.3)
   eslint:
-    specifier: ^8.20.0
+    specifier: ^8.54.0
     version: 8.54.0
   eslint-config-standard:
-    specifier: ^17.0.0
+    specifier: ^17.1.0
     version: 17.1.0(eslint-plugin-import@2.29.0)(eslint-plugin-n@16.3.1)(eslint-plugin-promise@6.1.1)(eslint@8.54.0)
   eslint-config-standard-jsx:
     specifier: ^11.0.0
@@ -113,19 +113,19 @@ devDependencies:
     specifier: git@github.com:standard/eslint-config-standard-react.git
     version: github.com/standard/eslint-config-standard-react/3dbac862af3b7c73bcfef281ae07599bc49630b2(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.33.2)(eslint@8.54.0)
   eslint-plugin-import:
-    specifier: ^2.26.0
+    specifier: ^2.29.0
     version: 2.29.0(eslint@8.54.0)
   eslint-plugin-node:
     specifier: ^11.1.0
     version: 11.1.0(eslint@8.54.0)
   eslint-plugin-promise:
-    specifier: ^6.0.1
+    specifier: ^6.1.1
     version: 6.1.1(eslint@8.54.0)
   eslint-plugin-react:
-    specifier: ^7.30.2
+    specifier: ^7.33.2
     version: 7.33.2(eslint@8.54.0)
   eslint-plugin-sort:
-    specifier: ^2.4.0
+    specifier: ^2.11.0
     version: 2.11.0(eslint@8.54.0)
   eslint-plugin-unicorn:
     specifier: ^43.0.2
@@ -2306,36 +2306,36 @@ packages:
       js-yaml: 4.1.0
     dev: false
 
-  /@fortawesome/fontawesome-common-types@6.1.2:
-    resolution: {integrity: sha512-wBaAPGz1Awxg05e0PBRkDRuTsy4B3dpBm+zreTTyd9TH4uUM27cAL4xWyWR0rLJCrRwzVsQ4hF3FvM6rqydKPA==}
+  /@fortawesome/fontawesome-common-types@6.4.2:
+    resolution: {integrity: sha512-1DgP7f+XQIJbLFCTX1V2QnxVmpLdKdzzo2k8EmvDOePfchaIGQ9eCHj2up3/jNEbZuBqel5OxiaOJf37TWauRA==}
     engines: {node: '>=6'}
     requiresBuild: true
     dev: false
 
-  /@fortawesome/fontawesome-svg-core@6.1.2:
-    resolution: {integrity: sha512-853G/Htp0BOdXnPoeCPTjFrVwyrJHpe8MhjB/DYE9XjwhnNDfuBCd3aKc2YUYbEfHEcBws4UAA0kA9dymZKGjA==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.1.2
-    dev: false
-
-  /@fortawesome/free-solid-svg-icons@6.1.2:
-    resolution: {integrity: sha512-lTgZz+cMpzjkHmCwOG3E1ilUZrnINYdqMmrkv30EC3XbRsGlbIOL8H9LaNp5SV4g0pNJDfQ4EdTWWaMvdwyLiQ==}
+  /@fortawesome/fontawesome-svg-core@6.4.2:
+    resolution: {integrity: sha512-gjYDSKv3TrM2sLTOKBc5rH9ckje8Wrwgx1CxAPbN5N3Fm4prfi7NsJVWd1jklp7i5uSCVwhZS5qlhMXqLrpAIg==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.1.2
+      '@fortawesome/fontawesome-common-types': 6.4.2
     dev: false
 
-  /@fortawesome/react-native-fontawesome@0.3.0(@fortawesome/fontawesome-svg-core@6.1.2)(react-native-svg@13.9.0)(react-native@0.72.6):
+  /@fortawesome/free-solid-svg-icons@6.4.2:
+    resolution: {integrity: sha512-sYwXurXUEQS32fZz9hVCUUv/xu49PEJEyUOsA51l6PU/qVgfbTb2glsTEaJngVVT8VqBATRIdh7XVgV1JF1LkA==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.4.2
+    dev: false
+
+  /@fortawesome/react-native-fontawesome@0.3.0(@fortawesome/fontawesome-svg-core@6.4.2)(react-native-svg@13.9.0)(react-native@0.72.6):
     resolution: {integrity: sha512-wSfetdK4+b/pvPbM2v+bZ5hfNlwtk9l3QuJo59sbMrxJalfX7BuF2WsSIWMSxfWwSsbOtY4+TUs6uw/rE59NJA==}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
       react-native: '>= 0.67'
       react-native-svg: '>= 11.x'
     dependencies:
-      '@fortawesome/fontawesome-svg-core': 6.1.2
+      '@fortawesome/fontawesome-svg-core': 6.4.2
       humps: 2.0.1
       prop-types: 15.8.1
       react-native: 0.72.6(@babel/core@7.23.3)(react@18.2.0)
@@ -2346,8 +2346,8 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: false
 
-  /@gorhom/bottom-sheet@4.4.8(react-native-gesture-handler@2.12.1)(react-native-reanimated@3.3.0)(react-native@0.72.6)(react@18.2.0):
-    resolution: {integrity: sha512-5QgM91NJjbqKxI8RjZ9ujjynaPzAM1iQKExK3+L+ZbEnziIq8tgOekhiBUut9sBZAQA4nhLxWV6Rt/HGpgCldQ==}
+  /@gorhom/bottom-sheet@4.5.1(react-native-gesture-handler@2.12.1)(react-native-reanimated@3.3.0)(react-native@0.72.6)(react@18.2.0):
+    resolution: {integrity: sha512-4Qy6hzvN32fXu2hDxDXOIS0IBGBT6huST7J7+K1V5bXemZ08KIx5ZffyLgwhCUl+CnyeG2KG6tqk6iYLkIwi7Q==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-native': '*'
@@ -2793,8 +2793,8 @@ packages:
       react-native: 0.72.6(@babel/core@7.23.3)(react@18.2.0)
     dev: false
 
-  /@react-navigation/bottom-tabs@6.3.3(@react-navigation/native@6.0.16)(react-native-safe-area-context@4.6.3)(react-native-screens@3.22.1)(react-native@0.72.6)(react@18.2.0):
-    resolution: {integrity: sha512-S5obigsDAgRD7hmGauijNITI2jPm7N40IIIwdQjJhT9Y9vos8ycLOKMVU06mchU6sRGJC2xIkPderPiwAUVvDg==}
+  /@react-navigation/bottom-tabs@6.5.11(@react-navigation/native@6.1.9)(react-native-safe-area-context@4.6.3)(react-native-screens@3.22.1)(react-native@0.72.6)(react@18.2.0):
+    resolution: {integrity: sha512-CBN/NOdxnMvmjw+AJQI1kltOYaClTZmGec5pQ3ZNTPX86ytbIOylDIITKMfTgHZcIEFQDymx1SHeS++PIL3Szw==}
     peerDependencies:
       '@react-navigation/native': ^6.0.0
       react: '*'
@@ -2802,8 +2802,8 @@ packages:
       react-native-safe-area-context: '>= 3.0.0'
       react-native-screens: '>= 3.0.0'
     dependencies:
-      '@react-navigation/elements': 1.3.21(@react-navigation/native@6.0.16)(react-native-safe-area-context@4.6.3)(react-native@0.72.6)(react@18.2.0)
-      '@react-navigation/native': 6.0.16(react-native@0.72.6)(react@18.2.0)
+      '@react-navigation/elements': 1.3.21(@react-navigation/native@6.1.9)(react-native-safe-area-context@4.6.3)(react-native@0.72.6)(react@18.2.0)
+      '@react-navigation/native': 6.1.9(react-native@0.72.6)(react@18.2.0)
       color: 4.2.3
       react: 18.2.0
       react-native: 0.72.6(@babel/core@7.23.3)(react@18.2.0)
@@ -2826,7 +2826,7 @@ packages:
       use-latest-callback: 0.1.9(react@18.2.0)
     dev: false
 
-  /@react-navigation/elements@1.3.21(@react-navigation/native@6.0.16)(react-native-safe-area-context@4.6.3)(react-native@0.72.6)(react@18.2.0):
+  /@react-navigation/elements@1.3.21(@react-navigation/native@6.1.9)(react-native-safe-area-context@4.6.3)(react-native@0.72.6)(react@18.2.0):
     resolution: {integrity: sha512-eyS2C6McNR8ihUoYfc166O1D8VYVh9KIl0UQPI8/ZJVsStlfSTgeEEh+WXge6+7SFPnZ4ewzEJdSAHH+jzcEfg==}
     peerDependencies:
       '@react-navigation/native': ^6.0.0
@@ -2834,14 +2834,14 @@ packages:
       react-native: '*'
       react-native-safe-area-context: '>= 3.0.0'
     dependencies:
-      '@react-navigation/native': 6.0.16(react-native@0.72.6)(react@18.2.0)
+      '@react-navigation/native': 6.1.9(react-native@0.72.6)(react@18.2.0)
       react: 18.2.0
       react-native: 0.72.6(@babel/core@7.23.3)(react@18.2.0)
       react-native-safe-area-context: 4.6.3(react-native@0.72.6)(react@18.2.0)
     dev: false
 
-  /@react-navigation/native@6.0.16(react-native@0.72.6)(react@18.2.0):
-    resolution: {integrity: sha512-YVmzypkDppV/vAG+66KTJ2RFtPjhDTLLjgk8TNTCHG3pahq1q13zbnEPjqB42bU4kgL5SG17O4saErt1DJaWQg==}
+  /@react-navigation/native@6.1.9(react-native@0.72.6)(react@18.2.0):
+    resolution: {integrity: sha512-AMuJDpwXE7UlfyhIXaUCCynXmv69Kb8NzKgKJO7v0k0L+u6xUTbt6xvshmJ79vsvaFyaEH9Jg5FMzek5/S5qNw==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -8968,8 +8968,8 @@ packages:
       tslib: 1.14.1
     dev: true
 
-  /twrnc@3.4.1(react-native@0.72.6):
-    resolution: {integrity: sha512-sx06LpxIE11siE9mlK7qsXeNE9Hk0dU1ACEQztgdR0/V/kDm+U9XJ1L0ibtvqEstX8R5o1NzKrpHPewgvCn5ZA==}
+  /twrnc@3.6.4(react-native@0.72.6):
+    resolution: {integrity: sha512-4yw0TS65X6OelJFmc4aCRS8JWI4fIK26Z9nSUOIVMpv7Z/GeAc9BXSnZ7SkD95uOkgmz/gLDS7a4BK6GHOl5Xg==}
     peerDependencies:
       react-native: '>=0.63.0'
     dependencies:

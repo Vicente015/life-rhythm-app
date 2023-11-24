@@ -24,6 +24,7 @@ import Historic from './src/pages/Historic'
 // * Components
 import MoodButton from './src/components/MoodButton'
 import DatePicker from 'react-native-date-picker'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
@@ -224,9 +225,11 @@ const Navigator = ({ bottomSheet }) => {
 export default function App () {
   const bottomSheetModalReference = useRef(null)
   return (
-    <BottomSheetModalProvider>
-      <BottomSheet reference={bottomSheetModalReference} />
-      <Navigator bottomSheet={bottomSheetModalReference} />
-    </BottomSheetModalProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <BottomSheetModalProvider>
+        <BottomSheet reference={bottomSheetModalReference} />
+        <Navigator bottomSheet={bottomSheetModalReference} />
+      </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   )
 }

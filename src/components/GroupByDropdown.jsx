@@ -3,7 +3,7 @@ import { BackHandler, Text, View } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { useMMKVStorage } from 'react-native-mmkv-storage'
 import tw from 'twrnc'
-import { pascalCase } from 'case-anything/dist/index.es'
+import { pascalCase } from 'case-anything/dist/index'
 import storage from '../database'
 
 const UnitDropdown = () => {
